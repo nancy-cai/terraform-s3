@@ -1,0 +1,110 @@
+variable "bucket-prefix" {
+  type        = string
+  description = "The Bucket prefix, forming part of name"
+}
+
+variable "base-domain" {
+  type        = string
+  description = "The Base Domain for the s3 bucket."
+}
+
+variable "replication-enabled" {
+  type        = bool
+  default     = false
+  description = "If replication needs to be enabled."
+}
+
+variable "logs-expiration" {
+  type        = number
+  default     = 90
+  description = "Number of days to keep logs for s3 access"
+}
+
+variable "force-destroy-s3-buckets" {
+  type        = bool
+  default     = false
+  description = "Whether to force deletion of s3 buckets"
+}
+
+variable "enable-versioning" {
+  type        = bool
+  default     = true
+  description = "Whether to enable versioning or not.  True if replication enabled."
+}
+
+variable "enable-delete-markers-replication" {
+  type        = bool
+  default     = false
+  description = "Whether deletion markers should be replicated"
+}
+
+variable "aws-principles-object-readwrite" {
+  type        = list(any)
+  description = "ARNs for principles (AWS) with read write access"
+  default     = []
+}
+
+variable "environment-name" {
+  type        = string
+  description = "The environment this bucket is attributed to."
+}
+
+variable "common-tags" {
+  type        = map(any)
+  description = "Common Tags to apply to the buckets"
+  default     = {}
+}
+
+variable "aws-principles-bucket-object" {
+  type        = list(any)
+  description = "ARNs for principles (AWS) with read write access to object and bucket"
+  default     = []
+}
+
+variable "canonical-principles-bucket-object" {
+  type        = list(any)
+  description = "ARNs for principles (CanonicalUser) with read write access to object and bucket"
+  default     = []
+}
+
+variable "lifecycle-enabled" {
+  type        = bool
+  default     = false
+  description = "Whether to enable lifecycle policy or not."
+}
+
+variable "objects-expiration" {
+  type        = number
+  default     = 30
+  description = "The expiration for the lifecycle of the object in the form of days"
+}
+
+variable "replication-kms-encrypted-enabled" {
+  type        = bool
+  default     = false
+  description = "Whether to replicate objects encrypted by KMS key"
+}
+
+variable "replication-source-kms-key-arn" {
+  type        = string
+  default     = ""
+  description = "The ARN of the customer managed AWS KMS key for the replication source bucket"
+}
+
+variable "replication-destination-kms-key-arn" {
+  type        = string
+  default     = ""
+  description = "The ARN of the customer managed AWS KMS key for the replication destination bucket"
+}
+
+variable "replication-source-region" {
+  type        = string
+  default     = "ap-southeast-2"
+  description = "The region where the source bucket is in"
+}
+
+variable "replication-destination-region" {
+  type        = string
+  default     = "ap-southeast-1"
+  description = "The region where the destination bucket is in"
+}
