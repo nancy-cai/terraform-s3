@@ -1,5 +1,5 @@
 locals {
-  common-tags = merge({ "Environment" : var.environment-name }, var.common-tags)
+  common-tags = { "Environment" : var.environment-name }
   enable-versioning = var.replication-enabled ? true : var.enable-versioning
 }
 provider "aws" {
